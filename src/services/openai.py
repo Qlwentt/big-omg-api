@@ -22,7 +22,7 @@ class OpenAI:
         )
 
         explanation = response['choices'][0]['message']['content'].strip()
-        big_o_pattern = r'O\([\w]+\)'
+        big_o_pattern = r'O\([a-zA-Z0-9\+\-\*/^ ]+\)'
         match = re.search(big_o_pattern, explanation)
         time_complexity = match.group(0) if match else "Unknown"
 

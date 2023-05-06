@@ -25,7 +25,7 @@ def get_big_o():
     code = req['code']
     openai_client = OpenAI()
     big_o_data = openai_client.get_big_o(code)
-    response = json.dumps({"data": big_o_data})
+    response = json.dumps(big_o_data)
     return Response(response, status=200, mimetype='application/json')
 
 if __name__ == "__main__":
