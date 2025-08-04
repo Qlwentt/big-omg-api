@@ -20,6 +20,7 @@ def hello_world():
 @cross_origin(supports_credentials=True)
 def get_big_o():
     req = request.get_json()
+    print(req['model'])
     if 'code' not in req:
         return Response("Missing required parameter 'code'", status=422)
     if 'model' not in req:
