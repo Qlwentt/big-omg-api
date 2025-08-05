@@ -32,7 +32,7 @@ curl -X POST http://localhost:5000/api/get-big-o \
   -H "Content-Type: application/json" \
   -d '{
     "code": "def addTwoNumbers(l1, l2):\n    dummy = ListNode(0)\n    current = dummy\n    carry = 0\n    \n    while l1 or l2 or carry:\n        x = l1.val if l1 else 0\n        y = l2.val if l2 else 0\n        \n        total = x + y + carry\n        carry = total // 10\n        \n        current.next = ListNode(total % 10)\n        current = current.next\n        \n        if l1: l1 = l1.next\n        if l2: l2 = l2.next\n    \n    return dummy.next",
-    "model": "anthropic/claude-3-opus"
+    "model": "claude-3-opus-latest"
   }'
 ```
 
