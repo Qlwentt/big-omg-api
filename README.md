@@ -42,7 +42,7 @@ curl -X POST http://localhost:5000/api/get-big-o \
 {
   "big_o": "O(max(m, n))",
   "explanation": "Time Complexity: O(max(m, n)) Where m is the length of linked list l1 and n is the length of linked list l2...",
-  "model": "claude-opus-4-20250514"
+  "model": "claude-3-opus-latest"
 }
 ```
 
