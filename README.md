@@ -1,6 +1,6 @@
 # Big OMG API
 
-Big OMG is a Flask-based API that analyzes the time complexity of user-inputted code. It uses AI configurable AI models (or defaults to Claude 4 Opus) to provide detailed time complexity analysis and explanations, helping developers optimize their algorithms.
+Big OMG is a Flask-based API that analyzes the time complexity of user-inputted code. It demonstrates how to use configurable AI models (or defaults to Claude 4 Opus) to provide detailed time complexity analysis and explanations, helping developers optimize their algorithms.
 
 ## Features
 
@@ -22,8 +22,8 @@ Analyzes the time complexity of provided code.
   "code": "your code snippet here",
   "model": "your model name here" // optional, defaults to claude-4-20250514
 }
-all supported models: https://models.litellm.ai/
 ```
+all supported models: https://models.litellm.ai/
 
 #### Example Request
 
@@ -50,11 +50,11 @@ curl -X POST http://localhost:5000/api/get-big-o \
 
 ### 1. Code Analysis Process
 
-The API uses a structured approach to analyze code complexity:
+The API uses a system prompt and a user prompt and then passes that into liteLLM's `completion` function which handles LLM-specific formatting so the code does not have to be different for different LLMs:
 
 ```python
 # The AI service prompts the model with a specific format
-messages = [
+mgs = [
     {
         "role": "system",
         "content": "You are an AI assistant that helps users analyze the time complexity of code snippets. Always start your response with the main time complexity in the format 'Time Complexity: O(...)' followed by your detailed explanation."
@@ -64,6 +64,11 @@ messages = [
         "content": f"I have the following piece of code:\n\n{code}\n\nWhat is the time complexity of this code and explain your reasoning?"
     }
 ]
+response = completion(
+            model=llm, # passed in from the request
+            messages=mgs,
+            temperature=1
+        )
 ```
 
 ### 2. Response Extraction
